@@ -10,22 +10,19 @@
   <main>
     <div class="sticky-md-top --bs-body-bg --bs-danger-border-subtle-rgb bg-light-subtle">
     <h1 class="col-6 offset-3 text-center col-xl-4 offset-xl-0 mt-5 mb-5">INKÖPSLISTA</h1>
-    <form id="form" class="row col-8 offset-2 col-xl-4 offset-xl-0 bg-primary-subtle mb-5 p-4 border border-primary-subtle rounded-3">
+    <form id="groceryForm" class="row col-8 offset-2 col-xl-4 offset-xl-0 bg-primary-subtle mb-5 p-4 border border-primary-subtle rounded-3">
       <div class="container">
         <div class="row offset-md-2 offset-sm-2 mb-3">
         <input type="text" name="vara" class="col-6" placeholder="Ange Vara">
         <div class="dropdown pl-1 col-4 justify-content-end">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Kategori
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" value="green" href="#">Frukt & Grönt</a></li>
-            <li><a class="dropdown-item" value="red" href="#">Chark</a></li>
-            <li><a class="dropdown-item" value="blue" href="#">Mejeri</a></li>
-            <li><a class="dropdown-item" value="yellow" href="#">Skafferi</a></li>
-            <li><a class="dropdown-item" value="purple" href="#">Hushållsvaror</a></li>
-            <li><a class="dropdown-item" value="orange" href="#">Snacks</a></li>
-          </ul>
+          <select name="kategori" class="btn btn-secondary dropdown-toggle" id="">
+            <option value="green">Frukt & Grönt</option>
+            <option value="red">Chark</option>
+            <option value="blue">Mejeri</option>
+            <option value="yellow">Skafferi</option>
+            <option value="purple">Hushållsvaror</option>
+            <option value="orange">Snacks</option>
+          </select>
       </div>
     </div>
   </div>
