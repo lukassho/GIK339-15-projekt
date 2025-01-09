@@ -10,25 +10,25 @@
   <main>
     <div class="sticky-md-top --bs-body-bg --bs-danger-border-subtle-rgb bg-light-subtle">
     <h1 class="col-6 offset-3 text-center col-xl-4 offset-xl-0 mt-5 mb-5">INKÖPSLISTA</h1>
-    <form id="groceryForm" class="row col-8 offset-2 col-xl-4 offset-xl-0 bg-primary-subtle mb-5 p-4 border border-primary-subtle rounded-3">
+    <form id="groceryForm" class="shadow row col-8 offset-2 col-xl-4 offset-xl-0 bg-primary-subtle mb-5 p-4 border border-primary-subtle rounded-3">
       <div class="container">
         <div class="row offset-md-2 offset-sm-2 mb-3">
-        <input type="text" name="vara" class="col-6" placeholder="Ange Vara">
+        <input type="text" name="groceryType" class="col-6" placeholder="Ange Vara">
         <div class="dropdown pl-1 col-4 justify-content-end">
-          <select name="kategori" class="btn btn-secondary dropdown-toggle" id="">
-            <option value="green">Frukt & Grönt</option>
-            <option value="red">Chark</option>
-            <option value="blue">Mejeri</option>
-            <option value="yellow">Skafferi</option>
-            <option value="purple">Hushållsvaror</option>
-            <option value="orange">Snacks</option>
+          <select name="groceryCategory" class="btn btn-secondary dropdown-toggle" id="">
+            <option name value="#b3d86e">Frukt & Grönt</option>
+            <option value="#d8464b">Chark</option>
+            <option value="#70deff">Mejeri</option>
+            <option value="#F9F077">Skafferi</option>
+            <option value="#C893C7">Hushållsvaror</option>
+            <option value="#FFB347">Snacks</option>
           </select>
       </div>
     </div>
   </div>
-        <input type="text" name="märke" placeholder="Märke" class="mb-2">
-        <input type="text" name="antal" placeholder="Antal" class="mb-2">
-            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Här kan du skriva en notis eller påminnelse..." rows="2"></textarea>
+        <input type="text" name="brand" placeholder="Märke" class="mb-2">
+        <input type="text" name="amount" placeholder="Antal" class="mb-2">
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="note" placeholder="Här kan du skriva en notis eller påminnelse..." rows="2"></textarea>
             <button class="btn btn-secondary mt-3">Lägg till</button>
     </form>
   </div>

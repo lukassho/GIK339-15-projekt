@@ -27,3 +27,17 @@ server.get('/groceries', (req, res) => {
         }
     })
 });
+
+server.post('/groceries', (req, res) => {
+    const grocery = req.body;
+    const sql = `INSERT INTO groceries(groceryType, amount, brand, groceryCategory, note) VALUES (?,?,?,?,?)`;
+
+    db.run(sql, Object.values(grocery), (err) => {
+        if(err) {
+        console.log(err);
+        res.status(500).send(err);
+    } else {
+        res.send('Användaren sparades');
+    }
+    });
+});
