@@ -10,20 +10,20 @@ function fetchData() {
     let html = `<ul class="p-0">`; //LÄGG TILL KLASSER
     groceries.forEach(grocery => {
       html += `<section>
-                <div class="mb-3 p-3 border border-primary-subtle rounded-3 col-8 offset-2 col-xl-3 offset-xl-0" style="background-color: ${grocery.groceryCategory};">
+                <div class="mb-3 p-4 border border-5 rounded-3 col-8 offset-2 col-xl-3 offset-xl-0" style="background-color: ${grocery.groceryCategory};">
                   <li>
                     <h3>${grocery.groceryType}</h3>
                     <p>${grocery.amount} st</p>
-                    <p>Märke: ${grocery.brand}</p>
-                    <p>Kategori: ${grocery.groceryCategory}</p>
+                    <p>Märke:${grocery.brand}</p>
+                    <p>Kategori:${grocery.groceryCategory}</p>
                     <p class="--bs-danger">Anteckning: ${grocery.note}</p>
                     <div>
-                      <button>Ändra</button>
-                      <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch">
+                              <input class="form-check-input" type="checkbox" role="switch">
           <label class="form-check-label" for="flexSwitchCheckDefault">Inhandlat</label>
         </div>
-                  <button>Ta Bort</button>
+                      <button class="btn btn-secondary mt-3" onclick="setCurrentGrocery(${grocery.id})">Ändra</button>
+                      <div class="form-check form-switch">
+                  <button class="btn btn-secondary mt-3" onclick="deleteGrocery(${grocery.id})">Ta Bort</button>
                 </div>
           </li>
           </div>
@@ -36,6 +36,28 @@ function fetchData() {
     listContainer.insertAdjacentHTML('beforeend', html);
   }
   });
+}
+
+function setCurrentGrocery(id) {
+  console.log('current', id);
+
+  fetch(`${url}/${id}`)
+  .then((result) => result.json())
+  .then((grocery) => {
+    console.log(grocery);
+    groceryForm.groceryType.value = grocery.groceryType;
+    groceryForm.amount.value = grocery.amount;
+    groceryForm.brand.value = grocery.brand;
+    groceryForm.groceryCategory.value = grocery.groceryCategory;
+    groceryForm.note.value = grocery.note;
+
+    localStorage.setItem('currentId', grocery.id);
+  });
+}
+
+function deleteGrocery(id) {
+  console.log('delete', id);
+  fetch(`${url}/${id}`, { method: 'DELETE' }).then((result) => fetchData());
 }
 
 groceryForm.addEventListener('submit', handleSubmit);
@@ -55,10 +77,13 @@ function handleSubmit(e) {
   serverGroceryObject.groceryCategory = groceryForm.groceryCategory.value;
   serverGroceryObject.note = groceryForm.note.value;
 
-  console.log(serverGroceryObject);
+  const id = localStorage.getItem('currentId');
+  if (id) {
+    serverGroceryObject.id = id;
+  }
 
 const request = new Request(url, {
-  method: 'POST',
+  method: serverGroceryObject.id ? 'PUT' : 'POST',
   headers: {
     'content-type': 'application/json'
   },
@@ -68,6 +93,8 @@ const request = new Request(url, {
 fetch(request).then((response) => {
   console.log(response);
   fetchData();
+
+  localStorage.removeItem('currentId');
   groceryForm.reset();
 })
 

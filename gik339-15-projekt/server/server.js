@@ -28,6 +28,20 @@ server.get('/groceries', (req, res) => {
     })
 });
 
+server.get('/groceries/:id', (req, res) => {
+    const id = req.params.id;
+
+    const sql = `SELECT * FROM groceries WHERE id=${id}`;
+
+    db.all(sql, (err, rows) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send(rows[0]);
+        }
+    });
+});
+
 server.post('/groceries', (req, res) => {
     const grocery = req.body;
     const sql = `INSERT INTO groceries(groceryType, amount, brand, groceryCategory, note) VALUES (?,?,?,?,?)`;
@@ -37,7 +51,52 @@ server.post('/groceries', (req, res) => {
         console.log(err);
         res.status(500).send(err);
     } else {
-        res.send('Användaren sparades');
+        res.send('Varan sparades');
     }
+    });
+});
+
+server.put('/groceries', (req, res) => {
+    const bodyData = req.body;
+
+    const id = bodyData.id;
+    const grocery = {
+        groceryType: bodyData.groceryType, 
+        amount: bodyData.amount, 
+        brand: bodyData.brand,
+        groceryCategory: bodyData.groceryCategory,
+        note: bodyData.note
+    };
+
+
+    let updateString = "";
+    const columnsArray = Object.keys(grocery);
+    columnsArray.forEach((column, i) => {
+        updateString += `${column}="${grocery[column]}"`;
+        if(i !== columnsArray.length - 1 ) updateString += ',';
+    });
+    const sql = `UPDATE groceries SET ${updateString} WHERE id=${id}`;
+
+    db.run(sql, (err) => {
+    if(err) {
+        console.log(err);
+        res.status(500).send(err);
+    } else {
+        res.send('Varan ändrades');
+    }
+    });
+});
+
+server.delete('/groceries/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = `DELETE FROM groceries WHERE id = ${id}`;
+
+    db.run(sql, (err) => {
+        if(err) {
+            console.log(err);
+            res.status(500).send(err);
+        } else {
+            res.send('Varan borttagen')
+        }
     });
 });
