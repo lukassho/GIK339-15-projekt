@@ -53,12 +53,38 @@ function setCurrentGrocery(id) {
 
     localStorage.setItem('currentId', grocery.id);
   });
+
 }
 
 function deleteGrocery(id) {
+  const main = document.querySelector('main');
   console.log('delete', id);
+
+  // Kör DELETE-begäran
   fetch(`${url}/${id}`, { method: 'DELETE' }).then((result) => fetchData());
+
+  // Lägg till modal i DOM
+  let html = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Varan har tagits bort ur listan!
+        </div>
+        </div>
+      </div>
+    </div>`;
+
+  main.insertAdjacentHTML('beforeend', html);
+
+  // Aktivera modalen med Bootstrap's API
+  const modalElement = document.getElementById('exampleModal');
+  const modalInstance = new bootstrap.Modal(modalElement);
+  modalInstance.show();
 }
+
 
 groceryForm.addEventListener('submit', handleSubmit);
 
@@ -88,6 +114,7 @@ const request = new Request(url, {
     'content-type': 'application/json'
   },
   body: JSON.stringify(serverGroceryObject)
+
 });
 
 fetch(request).then((response) => {
