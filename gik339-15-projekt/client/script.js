@@ -10,21 +10,21 @@ function fetchData() {
     let html = `<ul class="p-0">`; //LÄGG TILL KLASSER
     groceries.forEach(grocery => {
       html += `<section>
-                <div class="mb-3 p-4 rounded-3 col-8 offset-2 col-xl-3 offset-xl-0" style="background-color: ${grocery.groceryCategory};">
+                <div class="mb-3 p-4 rounded-3 col-8 offset-2 col-xl-5 offset-xl-6 shadow-sm" style="background-color: ${grocery.groceryCategory};">
                   <ul class="row justify-content-center p-0">
-                    <h3 class="col-6 pt-2">${grocery.groceryType}</h3>
+                    <h3 class="col-6 pt-2 fs-2">${grocery.groceryType}</h3>
                     <p class="col-6 pt-2 text-end">${grocery.brand}</p>
                     <div class="row bg-light p-2 rounded-2 col-12">
-                    <p class="col-3 pt-1">${grocery.amount} st</p>
+                    <p class="col-2 col-sm-2 pt-1">${grocery.amount} st</p>
                     <div class="col-3 pt-1">
-                              <input class="form-check-input" type="checkbox" role="switch">
-          <label class="form-check-label" for="flexSwitchCheckDefault">Inhandlat</label>
+                              <input class="form-check-input col-sm-6" type="checkbox" role="switch">
+          <label class="form-check-label col-sm-6" for="flexSwitchCheckDefault">Inhandlat</label>
         </div>
-        <p class="border rounded-2 p-3 border-secondary col-6">${grocery.note}</p>
+        <p class="border rounded-2 border-secondary p-1 col-6">${grocery.note}</p>
         <div class="justify-content-center d-flex">
-        <button class="btn btn-secondary col-2 offset-4 mt-3 m-1" onclick="setCurrentGrocery(${grocery.id})">Ändra</button>
+        <button class="btn btn-secondary col-sm-3 col-4 offset-4 mt-3 m-1" onclick="setCurrentGrocery(${grocery.id})">Ändra</button>
                     
-                    <button class="btn btn-secondary mt-3 col-2 m-1" onclick="deleteGrocery(${grocery.id})">Ta Bort</button>
+                    <button class="btn btn-secondary mt-3 col-sm-3 col-4 m-1" onclick="deleteGrocery(${grocery.id})">Ta Bort</button>
           </ul>
           </div>
         </section>`;

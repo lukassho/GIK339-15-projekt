@@ -8,11 +8,11 @@
 </head>
 <body class="bg-light-subtle">
   <main>
-    <div class="sticky-md-top --bs-body-bg --bs-danger-border-subtle-rgb bg-light-subtle">
-    <h1 class="fw-bold col-6 offset-3 text-center col-xl-4 offset-xl-0 mt-5 mb-5">INKÖPSLISTA</h1>
-    <form id="groceryForm" class="shadow row col-8 offset-2 col-xl-4 offset-xl-0 bg-primary-subtle mb-5 p-4 border border-primary-subtle rounded-3">
-      <div class="container">
-        <div class="row offset-md-2 offset-sm-2 mb-3">
+    <div class="sticky-md-top --bs-body-bg bg-md-light">
+    <h1 class="fw-bold col-6 offset-3 ml-0 text-center m-0 col-12 bg-light-subtle p-5 border border-light rounded-3">INKÖPSLISTA</h1>
+    <form id="groceryForm" class="shadow row col-8 offset-2 col-xl-4 offset-xl-1 bg-primary-subtle mb-5 p-4 border border-primary-subtle rounded-3">
+      <div class="container d-flex justify-content-center">
+        <div class="row offset-md-2 offset-sm-2 m-0 mb-2">
         <input type="text" name="groceryType" class="col-6" placeholder="Ange Vara">
         <div class="dropdown pl-1 col-4 justify-content-end">
           <select name="groceryCategory" class="btn btn-secondary dropdown-toggle" id="">
@@ -31,6 +31,7 @@
             <textarea class="form-control" id="exampleFormControlTextarea1" name="note" placeholder="Här kan du skriva en notis eller påminnelse..." rows="2"></textarea>
             <button class="btn btn-secondary mt-3">Lägg till</button>
     </form>
+    <img src="../client/Untitled-2.png" style="width: 300px; margin-left: 10rem;" class="d-none d-xl-flex" alt="Bild på frukter och ost">
   </div>
     <div id="listContainer"></div>
   </main>
