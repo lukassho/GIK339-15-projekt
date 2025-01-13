@@ -7,7 +7,7 @@ function fetchData() {
   .then(result => result.json())
   .then(groceries => {
     if (groceries.length > 0) {
-    let html = `<ul class="p-0">`; //LÄGG TILL KLASSER
+    let html = `<ul class="p-0">`;
     groceries.forEach(grocery => {
       html += `<section>
                 <div class="mb-3 p-4 rounded-3 col-8 offset-2 col-xl-5 offset-xl-6 shadow-sm" style="background-color: ${grocery.groceryCategory};">
@@ -59,12 +59,10 @@ function setCurrentGrocery(id) {
 function deleteGrocery(id) {
   console.log('delete', id);
 
-  // Kör DELETE-begäran
   fetch(`${url}/${id}`, { method: 'DELETE' }).then((result) => fetchData());
 
   openModal();
 }
-
 
 groceryForm.addEventListener('submit', handleSubmit);
 
@@ -123,10 +121,17 @@ function openModal(id) {
     </div>
   </div>`;
 
-main.insertAdjacentHTML('beforeend', html);
+  main.insertAdjacentHTML('beforeend', html);
 
-// Aktivera modalen med Bootstrap's API
-const modalElement = document.getElementById('exampleModal');
-const modalInstance = new bootstrap.Modal(modalElement);
-modalInstance.show();
-};
+  const modalElement = document.getElementById('exampleModal');
+  const modalInstance = new bootstrap.Modal(modalElement);
+  modalInstance.show();
+
+  setTimeout(() => {
+    if (modalElement) {
+      modalInstance.hide();
+      modalElement.remove();
+      console.log('Modalen har tagits bort.');
+    }
+  }, 3000);
+}
