@@ -117,7 +117,7 @@ function openModal(id) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Varan har tagits bort ur listan!
+        Listan har uppdaterats!
       </div>
       </div>
     </div>
