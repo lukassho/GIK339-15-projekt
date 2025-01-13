@@ -10,22 +10,22 @@ function fetchData() {
     let html = `<ul class="p-0">`; //LÄGG TILL KLASSER
     groceries.forEach(grocery => {
       html += `<section>
-                <div class="mb-3 p-4 border border-5 rounded-3 col-8 offset-2 col-xl-3 offset-xl-0" style="background-color: ${grocery.groceryCategory};">
-                  <li>
-                    <h3>${grocery.groceryType}</h3>
-                    <p>${grocery.amount} st</p>
-                    <p>Märke:${grocery.brand}</p>
-                    <p>Kategori:${grocery.groceryCategory}</p>
-                    <p class="--bs-danger">Anteckning: ${grocery.note}</p>
-                    <div>
+                <div class="mb-3 p-4 rounded-3 col-8 offset-2 col-xl-3 offset-xl-0" style="background-color: ${grocery.groceryCategory};">
+                  <ul class="row justify-content-center p-0">
+                    <h3 class="col-6 pt-2">${grocery.groceryType}</h3>
+                    <p class="col-6 pt-2 text-end">${grocery.brand}</p>
+                    <div class="row bg-light p-2 rounded-2 col-12">
+                    <p class="col-3 pt-1">${grocery.amount} st</p>
+                    <div class="col-3 pt-1">
                               <input class="form-check-input" type="checkbox" role="switch">
           <label class="form-check-label" for="flexSwitchCheckDefault">Inhandlat</label>
         </div>
-                      <button class="btn btn-secondary mt-3" onclick="setCurrentGrocery(${grocery.id})">Ändra</button>
-                      <div class="form-check form-switch">
-                  <button class="btn btn-secondary mt-3" onclick="deleteGrocery(${grocery.id})">Ta Bort</button>
-                </div>
-          </li>
+        <p class="border rounded-2 p-3 border-secondary col-6">${grocery.note}</p>
+        <div class="justify-content-center d-flex">
+        <button class="btn btn-secondary col-2 offset-4 mt-3 m-1" onclick="setCurrentGrocery(${grocery.id})">Ändra</button>
+                    
+                    <button class="btn btn-secondary mt-3 col-2 m-1" onclick="deleteGrocery(${grocery.id})">Ta Bort</button>
+          </ul>
           </div>
         </section>`;
     });
